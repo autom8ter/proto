@@ -56,8 +56,9 @@ message JwtProvider {
 
 // Provider is a provider that can be used to authenticate a request.
 message Provider {
+  string name = 1;
   oneof provider {
     // JwtProvider is a provider that uses a JWT to authenticate a request.
-    JwtProvider jwt = 1;
+    JwtProvider jwt = 2;
   }
 }

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package defaults;
+
+option go_package = "github.com/autom8ter/proto/gen/defaults;defaults";
+
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/struct.proto";
+
+// FieldOptions for defaults and constants
+extend google.protobuf.FieldOptions {
+  // default value for field
+  Defaults defaults = 90482;
+  // constant value for field
+  Constants constants = 90582;
+}
+
+// Defaults for a field
+message Defaults {
+  string default = 904823;
+  string default_string = 904824;
+  bool default_bool = 904825;
+  int32 default_int32 = 904826;
+  int64 default_int64 = 904827;
+  uint32 default_uint32 = 904828;
+  uint64 default_uint64 = 904829;
+  float default_float = 904830;
+  double default_double = 904831;
+  bytes default_bytes = 904832;
+  google.protobuf.Struct default_struct = 904833;
+  google.protobuf.Value default_value = 904834;
+  google.protobuf.ListValue default_list_value = 904835;
+}
+
+// Constants for a field
+message Constants {
+  string constant = 905823;
+  string constant_string = 905824;
+  bool constant_bool = 905825;
+  int32 constant_int32 = 905826;
+  int64 constant_int64 = 905827;
+  uint32 constant_uint32 = 905828;
+  uint64 constant_uint64 = 905829;
+  float constant_float = 905830;
+  double constant_double = 905831;
+  bytes constant_bytes = 905832;
+  google.protobuf.Struct constant_struct = 905833;
+  google.protobuf.Value constant_value = 905834;
+  google.protobuf.ListValue constant_list_value = 905835;
+}

@@ -6,6 +6,16 @@ option go_package = "github.com/autom8ter/proto/gen/authorize;authorize";
 
 import "google/protobuf/descriptor.proto";
 
+// The authorization configuration for a service and its methods.
+extend google.protobuf.ServiceOptions {
+  // Rules to apply to methods of this service.
+  // If a single rule evaluates to true, then the request is authorized.
+  // If no rules evaluate to true, then the request is not authorized.
+  RuleSet service_rules = 73903;
+  // A list of methods that do not require authorization.
+  repeated string white_list_methods = 73904;
+}
+
 // The authorization configuration for a service method.
 extend google.protobuf.MethodOptions {
   // Rules to apply to requests to this method.
