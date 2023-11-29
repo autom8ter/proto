@@ -6,10 +6,22 @@ option go_package = "github.com/autom8ter/proto/gen/authenticate;authenticate";
 
 import "google/protobuf/descriptor.proto";
 
-// The authentication configuration for a service method.
+// The authentication configuration for a service.
 // At least one provider must authenticate successfully for the request to be authenticated.
 extend google.protobuf.ServiceOptions {
+  // The authentication configuration for a service method.
+  Config config = 50042;
+}
+
+// Config is the authentication configuration for a service
+message Config {
+  // The authentication configuration for a service method.
   repeated Provider providers = 50043;
+  // The methods that do not require authentication.
+  repeated string whitelist_methods = 50044;
+  // require_env, if set, only enables the configuration if the environment variable GRPC_AUTH=${require_env} is set.
+  // This is useful for enabling different authentication in development/production environments.
+  string require_env = 6;
 }
 
 // Algorithm is the algorithm used to sign a JWT.
@@ -38,10 +50,8 @@ message JwtProvider {
   string jwks_uri = 4;
   // The environment variable that contains the secret key to verify the JWT.
   string secret_env = 5;
-  // require_env, if set, only enables the provider if the environment variable GRPC_AUTH=${require_env} is set.
-  string require_env = 6;
   // require_claims, if set, checks that the JWT contains the specified claims.
-  repeated string require_claims = 7;
+  repeated string require_claims = 6;
 }
 
 // Provider is a provider that can be used to authenticate a request.
